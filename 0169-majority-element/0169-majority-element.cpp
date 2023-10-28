@@ -1,18 +1,17 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        map<int,int>mp;
+        // map<int,int>mp;
         int ans;
         int n = nums.size();
-        // sort(nums.begin(),nums.end());
-        
+        // using Morse Vorting algo
+        int cnt = 0, candidate = 0;
         for(int i=0;i<nums.size();i++)
         {
-            mp[nums[i]]++;
-            if(mp[nums[i]]>n/2){
-                ans = nums[i];
-            }
+           if(cnt == 0) candidate = nums[i];
+           if(nums[i] == candidate ) cnt++;
+           else cnt--;
         }
-        return ans;
+        return candidate;
     }
 };
