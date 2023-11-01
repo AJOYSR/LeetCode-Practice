@@ -1,26 +1,17 @@
 class Solution {
 public:
-    int countWords(vector<string>& words1, vector<string>& words2) {
-        map<string, int> mp1, mp2;
-        vector<string> matchedStrings;
-        
-        for (string em : words1) {
-            mp1[em]++;
-            if (find(words2.begin(), words2.end(), em) != words2.end()) {
-                matchedStrings.push_back(em);
-            }
+  int countWords(vector<string>& words1, vector<string>& words2) {
+        unordered_map<string, int> m;
+        int cnt  = 0;
+        for(auto & w: words1) m[w]++;
+        for(auto & w: words2) {
+            auto it = m.find(w);
+            if (it == m.end()) continue;
+            if (it->second < 2) it->second--;
+            
+            if (it->second == 0) ++cnt;
+            else if(it->second == -1)--cnt;
         }
-        
-        for (auto em : words2) {
-            mp2[em]++;
-        }
-        
-        int ans = 0;
-        for (auto em : matchedStrings) {
-            if (mp1[em] == 1 && mp2[em] == 1) {
-                ans++;
-            }
-        }
-        return ans;
+        return cnt;
     }
 };
