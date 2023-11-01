@@ -5,11 +5,11 @@ public:
         unordered_set<int>st;
         for(int i=0;i<n;i++){
            st.insert(nums[i]);
-            
         }
-        int ans =0;
         
-        for(int i=0;i<n;i++)
+        int ans = 0;
+        
+        for(int i=0;i <n ;i++)
         {
             int count = 1;
             if(st.find(nums[i]-1)==st.end())
